@@ -1,0 +1,6 @@
+api_key = '' 
+# you can get a free api key from tidespy.com
+
+location = '' 
+# a 4 digit code for you location, also obtainable from tidespy.com
+
