@@ -8,9 +8,9 @@ This is based on ideas from @imikerussell at https://github.com/imikerussell/Tid
 
 So most of the code is mine, and that means it is pretty inefficient, but I'll tweak it over time. My primary goal was to get tide data into Home Assistant. My approach is quite different to Mike's. 
 
-** THIS CODE IS NOT YET READY. 
+## THIS CODE IS NOT YET READY. 
 
-** Structure
+## Structure
 
 Tidespy returns data via a json api. The tide data for a location is provided over a configurable number of days. Tide times a reported as a date in form YYYYMMDD (eg 20170118 for 18 Jan 2017), plus a nimber of minutes into the day, eg 345 means 05:45. This at first seemed odd but it makes sorting quite easy.
 
@@ -24,10 +24,11 @@ N = 1 - next tide
 N = 2 - the one after that
 
 ```tideupdatespy.py tideN``` - returns the time of tideN and whether it is Low or High
-```tideupdatespy.py heightN``` - returns the height on tibe N.
+
+```tideupdatespy.py heightN``` - returns the height on tide N.
 
 
-Install dependancies:
+Install dependencies:
 
 ```pip install requests```
 
