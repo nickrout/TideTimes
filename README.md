@@ -6,7 +6,26 @@ Python script to get tide times for any location supported by tidespy.com and re
 
 This is based on ideas from @imikerussell at https://github.com/imikerussell/TideTimes - I forked his code but largely used it for inspiration. Using a data source that gives a json response, rather than scraping a website, makes it considerably easier.
 
-So most of the code is mine, and that means it is pretty inefficient, but I'll tweak it over time. IT IS NOT YET READY. 
+So most of the code is mine, and that means it is pretty inefficient, but I'll tweak it over time. My primary goal was to get tide data into Home Assistant. My approach is quite different to Mike's. 
+
+** THIS CODE IS NOT YET READY. 
+
+** Structure
+
+Tidespy returns data via a json api. The tide data for a location is provided over a configurable number of days. Tide times a reported as a date in form YYYYMMDD (eg 20170118 for 18 Jan 2017), plus a nimber of minutes into the day, eg 345 means 05:45. This at first seemed odd but it makes sorting quite easy.
+
+I have two executables:
+
+tidespy.py downloads the data and stors it in two files, tides and turns. tides is essentially the whole json data, converted to a python dictionary. turns is just the tide turn information. I decided to do it because of my complete uselessness at python and to make the next script easier.
+updatetidespy.py takes a single argument as follows:
+
+N = 0 - last tide
+N = 1 - next tide
+N = 2 - the one after that
+
+```tideupdatespy.py tideN``` - returns the time of tideN and whether it is Low or High
+```tideupdatespy.py heightN``` - returns the height on tibe N.
+
 
 Install dependancies:
 
@@ -27,7 +46,7 @@ Edit the *api_key*, *location* and *basedir* variables. *api_key*  is available 
 
 To get started:
 
-Set up a cronjob `crontab -e` at 06:00, or some other tme suitable to you:
+Set up a cronjob `crontab -e` at 06:00, or some other time suitable to you:
 
 ```0 6 * * * /usr/bin/python /home/hass/TideTimes/tides.py```
 
@@ -41,7 +60,7 @@ Next Low Tide: 04:11
 Next Low Tide Height: 0.8
 ```
 
-## Intergration with Home Assistant
+## Integration with Home Assistant
 
 Home Assistant is an amazing, open source, home automation platform. If you're into home automation and own a few devices you should think about linking them together inside [Home Assistant](https://home-assistant.io/)!
 
