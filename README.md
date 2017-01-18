@@ -12,20 +12,26 @@ So most of the code is mine, and that means it is pretty inefficient, but I'll t
 
 ## Structure
 
-Tidespy returns data via a json api. The tide data for a location is provided over a configurable number of days. Tide times a reported as a date in form YYYYMMDD (eg 20170118 for 18 Jan 2017), plus a nimber of minutes into the day, eg 345 means 05:45. This at first seemed odd but it makes sorting quite easy.
+Tidespy returns data via a json api. The tide data for a location is provided over a configurable number of days. Tide times a reported as a date in form YYYYMMDD (eg 20170118 for 18 Jan 2017), plus a number of minutes into the day, eg 345 means 05:45. This at first seemed odd but it makes sorting by date/time quite easy.
 
 I have two executables:
 
-tidespy.py downloads the data and stors it in two files, tides and turns. tides is essentially the whole json data, converted to a python dictionary. turns is just the tide turn information. I decided to do it because of my complete uselessness at python and to make the next script easier.
+tidespy.py downloads the json data and stores it in two files, tides and turns. ```tides``` is essentially the whole json data, converted to a python dictionary. ```turns``` is just the tide turn information. I decided to do it that way because of my complete uselessness at python and to make the next script easier.
+
 updatetidespy.py takes a single argument as follows:
 
-N = 0 - last tide
-N = 1 - next tide
-N = 2 - the one after that
 
 ```tideupdatespy.py tideN``` - returns the time of tideN and whether it is Low or High
 
 ```tideupdatespy.py heightN``` - returns the height on tide N.
+
+Where:
+
+N = 0 - last tide
+
+N = 1 - next tide
+
+N = 2 - the one after that
 
 
 Install dependencies:
