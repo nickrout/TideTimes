@@ -1,5 +1,12 @@
 # TideTimes
-Simple Python script to get tide times for any UK location and report the next high tide and low tide on demand.
+
+*This code is not yet finished!!!*
+
+Python script to get tide times for any location supported by tidespy.com and report the last tide and next two tides.
+
+This is based on ideas from @imikerussell at https://github.com/imikerussell/TideTimes - I forked his code but largely used it for inspiration. Using a data source that gives a json response, rather than scraping a website, makes it considerably easier.
+
+So most of the code is mine, and that means it is pretty inefficient, but I'll tweak it over time. IT IS NOT YET READY. 
 
 Install dependancies:
 
@@ -9,17 +16,18 @@ Install dependancies:
     
 To configure:
 
-```cp config.py.example config.py```
+```cp configspy.py.example configspy.py```
 
 ```nano config.py```
 
-Edit the *URL* and *LOCATION* variables. *URL* should point to the [Met Office tide times page](http://www.metoffice.gov.uk/public/weather/tide-times) for your location and *LOCATION* should point to your local installation directory.
+Edit the *api_key*, *location* and *basedir* variables. *api_key*  is available for free from [TideSpy](http://tidespy.com/client/RawApi.php). *location* should be the 4 digit number obtainable from TideSpy. *basedir* should be set to the directory your tidesspy.py and tideupdatespy.py are store. Your data will also be stored there. *Please note that this is different to @imikerussell 's config naming.
 
-In this example the *URL* is set to Sandown Beach on the Isle of Wight and *LOCATION* is `/home/hass/TideTimes` (so the script may intergrate with [Home Assistant](https://home-assistant.io/)).
+
+
 
 To get started:
 
-Set up a cronjob `crontab -e` at 06:00 (as Met Office does not update website at exactly midnight) to grab new tide times for the day ahead:
+Set up a cronjob `crontab -e` at 06:00, or some other tme suitable to you:
 
 ```0 6 * * * /usr/bin/python /home/hass/TideTimes/tides.py```
 
